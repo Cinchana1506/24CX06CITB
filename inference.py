@@ -54,7 +54,7 @@ def deshadow_prompt(img):
 def deblur_prompt(img):
     x = cv2.Sobel(img,cv2.CV_16S,1,0)  
     y = cv2.Sobel(img,cv2.CV_16S,0,1)  
-    absX = cv2.convertScaleAbs(x)   # 转回uint8  
+    absX = cv2.convertScaleAbs(x)     
     absY = cv2.convertScaleAbs(y)  
     high_frequency = cv2.addWeighted(absX,0.5,absY,0.5,0)
     high_frequency = cv2.cvtColor(high_frequency,cv2.COLOR_BGR2GRAY)
@@ -87,7 +87,7 @@ def binarization_promptv2(img):
 
     x = cv2.Sobel(img,cv2.CV_16S,1,0)  
     y = cv2.Sobel(img,cv2.CV_16S,0,1)  
-    absX = cv2.convertScaleAbs(x)   # 转回uint8  
+    absX = cv2.convertScaleAbs(x)     
     absY = cv2.convertScaleAbs(y)  
     high_frequency = cv2.addWeighted(absX,0.5,absY,0.5,0)
     high_frequency = cv2.cvtColor(high_frequency,cv2.COLOR_BGR2GRAY)
@@ -256,7 +256,7 @@ def binarization(model,im_path):
 
 def get_args():
     parser = argparse.ArgumentParser(description='Params')
-    parser.add_argument('--model_path', nargs='?', type=str, default='./checkpoints/docres.pkl',help='Path of the saved checkpoint')
+    parser.add_argument('--model_path', nargs='?', type=str, default='./checkpoints/model.pkl',help='Path of the saved checkpoint')
     parser.add_argument('--im_path', nargs='?', type=str, default='./distorted/',
                         help='Path of input document image')
     parser.add_argument('--out_folder', nargs='?', type=str, default='./restorted/',
